@@ -20,32 +20,57 @@ void error()
 {cout<<"---输入错误请从新输入---"<<endl;cout<<"\n";}
 void data_input()                                             
 { 
+	char w;
 	int a;
-	cout<<"请输入通讯信息,依次输入:序号，姓名，邮编，email，地址，电话号码。输入0结束"<<endl;
+	cout<<"请输入通讯信息,依次输入:(输入0结束)"<<endl;
 	for(a=0;a<n;a++)
+		
+	{	
+	m[a].num=a+1;
+	
+	cout<<"姓名"<<endl;
+	cin>>m[a].name;
+	cout<<"邮编"<<endl;
+	cin	>>m[a].postcode;
+	cout<<"email"<<endl;
+	cin	>>m[a].email;
+	cout<<"地址"<<endl;
+	cin	>>m[a].add;
+	cout<<"电话号码"<<endl;
+	cin	>>m[a].tel;
+	cout<<"是否继续添加联系人：（n退出）";
+	cin>>w;
+	if(w=='n')
+		//if(m[a].num==0)
 	{
-		cin>>m[a].num;
-		if(m[a].num==0)
-		{
-			b=a;
-			break;
-		}
-		cin>>m[a].name
-			>>m[a].postcode
-			>>m[a].email
-			>>m[a].add
-			>>m[a].tel;
+		
+		break;
+	}
 	}
 	system("pause");
 }
 void data_show()                                                   
 {
 	int i;
-	cout<<setiosflags(ios::left)<<setw(2)<<"序号"<<"  "<<setw(15)<<"姓名"<<"  "<<setw(20)<<"邮编"<<"  "<<setw(12)<<"E-mail"<<"  "<<setw(15)<<"地址"<<"  "<<setw(20)<<"电话"<<endl;
-	for(i=0;i<n;i++)
+	cout<<setiosflags(ios::left)<<setw(5)<<"序号"<<"  "//用了setiosflags(ios::right)以后,表明是右对齐...
+	<<setw(10)<<"姓名"<<"  "
+		<<setw(7)<<"邮编"<<"  "
+		<<setw(12)<<"E-mail"<<"  "
+		<<setw(10)<<"地址"<<"  "
+		<<setw(10)<<"电话"<<endl;
+	for(i=0;m[i].num!=0;i++)//遇到0即停止输出
+		//for(i=0;i<n;i++)
 	{
-		cout<<setiosflags(ios::left)<<setw(5)<<m[i].num<<"  "<<setw(15)<<m[i].name<<"  "<<setw(20)<<m[i].postcode<<"  "<<setw(12)<<m[i].email<<"  "<<setw(15)<<m[i].add<<"  "<<setw(20)<<m[i].tel<<endl;
-        if(m[i].num==0)break;
+		if(m[i].name!=0)
+		{cout<<setiosflags(ios::left)<<setw(5)<<m[i].num<<"  "
+			<<setw(10)<<m[i].name<<"  "
+			<<setw(7)<<m[i].postcode<<"  "
+			<<setw(12)<<m[i].email<<"  "
+			<<setw(10)<<m[i].add<<"  "
+			<<setw(10)<<m[i].tel<<endl;
+		}
+		else
+			break;
 	}
 }
 
@@ -85,7 +110,7 @@ void dalete()
 void search1() 
 {     
 	data_show(); 
-	cout<<"请输入您要查找的序號:"<<endl; 
+	cout<<"请输入您要查找的序号:"<<endl; 
 	int a;
 	cin>>a;                                                        
 	int flag=0;
@@ -143,7 +168,7 @@ void search2()
 void search3() 
 {     
 	data_show(); 
-	cout<<"请输入您要查找的郵編:"<<endl; 
+	cout<<"请输入您要查找的邮编:"<<endl; 
 	string a; 
 	cin>>a;                                                        
 	int flag=0;
@@ -171,7 +196,7 @@ void search3()
 void search4() 
 {     
 	data_show(); 
-	cout<<"请输入您要查找的e_mail:"<<endl; 
+	cout<<"请输入您要查找的Email:"<<endl; 
 	string a; 
 	cin>>a;                                                        
 	int flag=0;
@@ -227,7 +252,7 @@ void search5()
 void search6() 
 {     
 	data_show(); 
-	cout<<"请输入您要查找的電話:"<<endl; 
+	cout<<"请输入您要查找的电话:"<<endl; 
 	string a; 
 	cin>>a;                                                        
 	int flag=0;
@@ -255,7 +280,7 @@ void search6()
 }
 void search() 
 {
-	cout<<"(1)序號(2)姓名(3)郵編(4)e_mail(5)地址(6)電話(7)結束"<<endl;   
+	cout<<"请输入查询方式：\n(1)序号(2)姓名(3)邮编(4)Email(5)地址(6)电话(7)结束"<<endl;   
 	cout<<"请输入选项:"; 
 	int r; 
 	cin>>r; 
@@ -485,6 +510,8 @@ void sort()
 	default:error(); 
 	} 
 }   
+
+
 void save()                                       
 {       
 	int i;
@@ -496,7 +523,12 @@ void save()
 	}
 	for(i=0;i<b;i++)
 	{  
-		outfile<<setiosflags(ios::left)<<setw(5)<<m[i].num<<"  "<<setw(15)<<m[i].name<<"  "<<setw(20)<<m[i].postcode<<"  "<<setw(12)<<m[i].email<<"  "<<setw(15)<<m[i].add<<"  "<<setw(11)<<m[i].tel<<endl;
+		outfile<<setiosflags(ios::left)<<setw(5)<<m[i].num<<"  "
+			<<setw(15)<<m[i].name<<"  "
+			<<setw(20)<<m[i].postcode<<"  "
+			<<setw(12)<<m[i].email<<"  "
+			<<setw(15)<<m[i].add<<"  "
+			<<setw(11)<<m[i].tel<<endl;
 	}
 	outfile.close();
 	cout<<endl;
@@ -528,18 +560,18 @@ void load()
 
 void main()                                                      
 { 
-	cout<<"-----------------通讯录管理系统---------------------\n"; 
+	cout<<"            -----------------通讯录管理系统---------------------\n"; 
 	cout<<"功能菜单:\n";
-	   cout<<"                         【1】浏览                     \n"; 
+	   cout<<"                         【1】浏览\n"; 
        cout<<"                         【2】创建\n";                                  
        cout<<"                         【3】删除\n"; 
        cout<<"                         【4】查询\n"; 
        cout<<"                         【5】编辑\n"; 
        cout<<"                         【6】排序\n";
-       cout<<"                         【7】将通讯录写入文件请选择*******************\n";
-       cout<<"                         【8】从文件读入通讯录请选择*******************\n";
-       cout<<"                         【9】退出请选择*******************************\n"; 
-	   // cout<<"**编写"; 
+       cout<<"                         【7】将通讯录写入文件请选择\n";
+       cout<<"                         【8】从文件读入通讯录请选择\n";
+       cout<<"                         【9】退出请选择\n"; 
+	   // cout<<"计科2班 吴方 朱允海"; 
        cout<<endl; 
        for(;;) 
 	   { 
