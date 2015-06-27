@@ -1,6 +1,8 @@
 #include<iostream> 
 #include<string>
 #include<fstream>
+
+//#include <strstream.h>
 #include<iomanip>
 using namespace std;
 struct man                                                        
@@ -515,10 +517,10 @@ void sort()
 void save()                                       
 {       
 	int i;
-	ofstream outfile("通讯录.txt",ios::out);
+	ofstream outfile("TelBook.txt",ios::out);
 	if(!outfile)
 	{
-		cerr<<"open 通讯录.txt error!"<<endl;
+		cerr<<"open TelBook.txt error!"<<endl;
 		exit(1);
 	}
 	for(i=0;m[i].num!=0;i++)
@@ -536,10 +538,10 @@ void save()
 }
 void load()
 {
-	ifstream infile("通讯录.txt",ios::out);
+	ifstream infile("TelBook.txt",ios::out);
 	if(!infile)
 	{
-		cerr<<"open 通讯录.txt error!"<<endl;
+		cerr<<"open TelBook.txt error!"<<endl;
 		exit(1);
 	}
 	char ch[100];
@@ -568,16 +570,16 @@ void main()
 { 
 	cout<<"            -----------------通讯录管理系统---------------------\n"; 
 	cout<<"功能菜单:\n";
-	   cout<<"                         【1】浏览\n"; 
-       cout<<"                         【2】创建\n";                                  
-       cout<<"                         【3】删除\n"; 
-       cout<<"                         【4】查询\n"; 
-       cout<<"                         【5】编辑\n"; 
-       cout<<"                         【6】排序\n";
-       cout<<"                         【7】将通讯录写入文件请选择\n";
-       cout<<"                         【8】从文件读入通讯录请选择\n";
-       cout<<"                         【9】退出请选择\n"; 
-	   // cout<<"计科2班 吴方 朱允海"; 
+	   cout<<"                         【1】	浏览\n"; 
+       cout<<"                         【2】	创建\n";                                  
+       cout<<"                         【3】	删除\n"; 
+       cout<<"                         【4】	查询\n"; 
+       cout<<"                         【5】	编辑\n"; 
+       cout<<"                         【6】	排序\n";
+       cout<<"                         【7】写入文件\n";
+       cout<<"                         【8】读入文件\n";
+       cout<<"                         【9】	退出\n"; 
+	   cout<<"							计科2班 吴方 朱允海\n"; 
        cout<<endl; 
        for(;;) 
 	   { 
