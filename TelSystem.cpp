@@ -521,14 +521,14 @@ void save()
 		cerr<<"open ͨѶ¼.txt error!"<<endl;
 		exit(1);
 	}
-	for(i=0;i<b;i++)
+	for(i=0;m[i].num!=0;i++)
 	{  
 		outfile<<setiosflags(ios::left)<<setw(5)<<m[i].num<<"  "
-			<<setw(15)<<m[i].name<<"  "
-			<<setw(20)<<m[i].postcode<<"  "
+			<<setw(10)<<m[i].name<<"  "
+			<<setw(7)<<m[i].postcode<<"  "
 			<<setw(12)<<m[i].email<<"  "
-			<<setw(15)<<m[i].add<<"  "
-			<<setw(11)<<m[i].tel<<endl;
+			<<setw(10)<<m[i].add<<"  "
+			<<setw(10)<<m[i].tel<<endl;
 	}
 	outfile.close();
 	cout<<endl;
@@ -542,7 +542,13 @@ void load()
 		cerr<<"open ͨѶ¼.txt error!"<<endl;
 		exit(1);
 	}
-	for(int i=0; i < 100; i++)
+	char ch[100];
+while (!infile.eof())
+{
+infile.getline(ch,100);
+cout<<ch<<endl;
+}
+	/*for(int i=0; i < 100; i++)
 		
 	{
 		infile>>m[i].num;
@@ -551,7 +557,7 @@ void load()
 		infile>>m[i].email;
 		infile>>m[i].add;
 		infile>>m[i].tel;
-	}
+	}*/
 }
 
 
